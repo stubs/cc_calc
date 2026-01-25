@@ -1,0 +1,80 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Copilot Money Transactions Export",
+  "description": "Schema for Copilot Money CSV export files",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "properties": {
+      "date": {
+        "type": "string",
+        "description": "Transaction date",
+        "format": "date",
+        "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+        "examples": ["2025-12-31"]
+      },
+      "name": {
+        "type": "string",
+        "description": "Merchant or transaction name",
+        "examples": ["Nyct Paygo", "Lincoln Market"]
+      },
+      "amount": {
+        "type": "number",
+        "description": "Transaction amount (positive for purchases, negative for credits/payments)",
+        "examples": [21.64, -500.00]
+      },
+      "status": {
+        "type": "string",
+        "description": "Transaction status",
+        "enum": ["posted", "pending"]
+      },
+      "category": {
+        "type": "string",
+        "description": "User-assigned category",
+        "examples": ["Transportation", "Groceries", "Entertainment"]
+      },
+      "parent category": {
+        "type": ["string", "null"],
+        "description": "Parent category for hierarchical categorization",
+        "examples": ["Car & Transport", "Food & Drink", "Shopping"]
+      },
+      "excluded": {
+        "type": "boolean",
+        "description": "Whether transaction is excluded from budgets/reports",
+        "default": false
+      },
+      "tags": {
+        "type": ["string", "null"],
+        "description": "User-assigned tag for tracking (e.g., person or project)",
+        "examples": ["aaron", "nacho", "work"]
+      },
+      "type": {
+        "type": "string",
+        "description": "Transaction type",
+        "enum": ["regular", "internal transfer", "refund"]
+      },
+      "account": {
+        "type": "string",
+        "description": "Account name/identifier",
+        "examples": ["CSP", "Checking"]
+      },
+      "account mask": {
+        "type": "string",
+        "description": "Last 4 digits of account number",
+        "pattern": "^\\d{4}$",
+        "examples": ["1234"]
+      },
+      "note": {
+        "type": ["string", "null"],
+        "description": "User-added note",
+        "default": ""
+      },
+      "recurring": {
+        "type": ["string", "null"],
+        "description": "Recurring transaction identifier",
+        "default": ""
+      }
+    },
+    "required": ["date", "name", "amount", "status", "type", "account", "account mask"]
+  }
+}

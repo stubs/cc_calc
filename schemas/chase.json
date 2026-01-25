@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Chase Credit Card Export",
+  "description": "Schema for Chase credit card CSV export files",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "properties": {
+      "Transaction Date": {
+        "type": "string",
+        "description": "Date the transaction occurred",
+        "pattern": "^\\d{2}/\\d{2}/\\d{4}$",
+        "examples": ["12/17/2025"]
+      },
+      "Post Date": {
+        "type": "string",
+        "description": "Date the transaction posted to the account",
+        "pattern": "^\\d{2}/\\d{2}/\\d{4}$",
+        "examples": ["12/19/2025"]
+      },
+      "Description": {
+        "type": "string",
+        "description": "Merchant name or transaction description",
+        "examples": ["MTA*NYCT PAYGO", "LINCOLN MARKET"]
+      },
+      "Category": {
+        "type": "string",
+        "description": "Chase-assigned category",
+        "examples": ["Travel", "Groceries", "Food & Drink", "Shopping", "Bills & Utilities"]
+      },
+      "Type": {
+        "type": "string",
+        "description": "Transaction type",
+        "enum": ["Sale", "Payment", "Return", "Fee", "Adjustment"]
+      },
+      "Amount": {
+        "type": "number",
+        "description": "Transaction amount (negative for purchases, positive for payments/credits)",
+        "examples": [-21.64, 7240.61]
+      },
+      "Memo": {
+        "type": "string",
+        "description": "Optional memo field",
+        "default": ""
+      }
+    },
+    "required": ["Transaction Date", "Post Date", "Description", "Type", "Amount"]
+  }
+}

@@ -1,0 +1,18 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "cc-calc"
+version = "0.1.0"
+description = "util for reconciling my personal cc transactions by tag."
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "questionary>=2.0.0",
+    "rapidfuzz>=3.0.0",
+    "rich>=13.0.0",
+]
+
+[project.scripts]
+cc-calc = "cc_calc.main:main"

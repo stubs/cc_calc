@@ -487,11 +487,11 @@ def main():
 
     # Load transactions
     console.print("[dim]Loading Chase transactions...[/dim]")
-    chase_txs = load_chase_csv(args.chase_csv)
+    chase_txs = load_chase_csv(args.CHASE_CSV)
     console.print(f"[dim]Loaded {len(chase_txs)} Chase transactions[/dim]")
 
     console.print("[dim]Loading Copilot transactions...[/dim]")
-    copilot_txs = load_copilot_csv(args.copilot_csv)
+    copilot_txs = load_copilot_csv(args.COPILOT_CSV)
     console.print(f"[dim]Loaded {len(copilot_txs)} Copilot transactions[/dim]")
 
     # Match transactions

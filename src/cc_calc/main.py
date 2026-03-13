@@ -459,7 +459,8 @@ def main():
     )
     parser.add_argument(
         "CHASE_CSV",
-        help="Path to Chase CSV export file"
+        nargs="+",
+        help="Path(s) to one or more Chase CSV export files"
     )
     parser.add_argument(
         "COPILOT_CSV",
@@ -486,9 +487,11 @@ def main():
     console = Console()
 
     # Load transactions
-    console.print("[dim]Loading Chase transactions...[/dim]")
-    chase_txs = load_chase_csv(args.CHASE_CSV)
-    console.print(f"[dim]Loaded {len(chase_txs)} Chase transactions[/dim]")
+    chase_txs = []
+    for chase_file in args.CHASE_CSV:
+        console.print(f"[dim]Loading Chase transactions from {chase_file}...[/dim]")
+        chase_txs.extend(load_chase_csv(chase_file))
+    console.print(f"[dim]Loaded {len(chase_txs)} Chase transactions total[/dim]")
 
     console.print("[dim]Loading Copilot transactions...[/dim]")
     copilot_txs = load_copilot_csv(args.COPILOT_CSV)
